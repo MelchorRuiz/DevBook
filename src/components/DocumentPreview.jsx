@@ -5,7 +5,7 @@ export const DocumentPreview = () => {
     const { title, description, exercises } = useDocumentStore();
 
     return (
-        <div className="bg-slate-900/30 flex-1 rounded-lg p-4">
+        <div className="bg-slate-900/30 flex-1 rounded-lg p-4 overflow-y-scroll">
             <h2 className='text-4xl'>{ title }</h2>
             <p className='text-lg pt-2'>{ description }</p>
             {exercises.map((exercise, index) => (
