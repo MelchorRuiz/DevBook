@@ -35,6 +35,8 @@ jobs:
         npm install
 
     - name: Build the application
+      env:
+        VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }} 
       run: |
         npm run build
         
