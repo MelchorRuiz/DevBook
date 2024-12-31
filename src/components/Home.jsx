@@ -13,11 +13,19 @@ export const Home = () => {
                 </Link>
                 <a 
                     className="text-lg"
+                    target="_blank"
                     href="https://github.com/MelchorRuiz/DevBook"
                 >
                     Código fuente &rarr;
                 </a>
             </div>
+            <a 
+                href="https://github.com/MelchorRuiz"
+                target="_blank"
+                className='bottom-7 right-7 fixed bg-white/20 py-1 px-2 rounded-sm hover:bg-white/10 cursor-pointer'
+            >
+                Creado por: MelchorRuiz
+            </a>
         </div>
     )
 }
