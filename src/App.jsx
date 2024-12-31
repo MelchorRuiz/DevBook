@@ -4,6 +4,7 @@ import { DocumentPreview } from "./components/DocumentPreview"
 import { Home } from "./components/Home"
 import { ManageDocuments } from "./components/ManageDocuments"
 import { LoginButton, Profile } from "./components/Auth"
+import { NotFound } from './components/NotFound';
 import useUserStore from "./store/useUserStore"
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
                   <DocumentPreview />
                 </>
               )} />
+              <Route path='*' element={<NotFound />} />
             </Routes>
         </main>
       </div>
