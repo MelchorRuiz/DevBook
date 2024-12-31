@@ -1,5 +1,6 @@
 import { googleLogout, useGoogleLogin } from '@react-oauth/google'
 import useUserStore from '../store/useUserStore';
+import { ensureFolderExists } from '../services/googleDriveService';
 
 export const LoginButton = () => {
     const { setUser } = useUserStore();
@@ -10,7 +11,8 @@ export const LoginButton = () => {
                 headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
             });
             const userInfo = await response.json();
-            setUser(userInfo, tokenResponse.access_token);
+            const folderId = await ensureFolderExists(tokenResponse.access_token);
+            setUser(userInfo, tokenResponse.access_token, folderId);
         },
         onError: errorResponse => {
             alert('Ha ocurrido un error');

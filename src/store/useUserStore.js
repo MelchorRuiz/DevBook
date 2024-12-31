@@ -7,10 +7,11 @@ const useUserStore = create(
             user: null,
             token: null,
             isAuthenticated: false,
+            folderId: "",
 
             // Actions
-            setUser: (user, token) => set({ user, token, isAuthenticated: true }),
-            clearUser: () => set({ user: null, token: null, isAuthenticated: false }),
+            setUser: (user, token, folderId) => set({ user, token, isAuthenticated: true, folderId }),
+            clearUser: () => set({ user: null, token: null, isAuthenticated: false, folderId: "" }),
         }),
         {
             name: 'user-store',

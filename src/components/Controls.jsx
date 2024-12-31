@@ -3,7 +3,7 @@ import useDocumentStore from "../store/useDocumentStore"
 import { uploadFileToDrive } from "../services/googleDriveService"
 
 export const Controls = () => {
-    const { isAuthenticated, token } = useUserStore()
+    const { isAuthenticated, token, folderId } = useUserStore()
     const { title, description, exercises, clear } = useDocumentStore()
 
     const save = async () => {
@@ -20,7 +20,7 @@ export const Controls = () => {
         const fileContent = JSON.stringify({ title, description, exercises })
 
         try {
-            await uploadFileToDrive(token, `${title}.json`, fileContent)
+            await uploadFileToDrive(token, `${title}.json`, fileContent, folderId)
             alert('Documento guardado correctamente')
         } catch (error) {
             alert('Error al guardar el documento')
