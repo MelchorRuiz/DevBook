@@ -23,6 +23,7 @@ const useDocumentStore = create(
                 set((state) => ({
                     exercises: state.exercises.filter((_, i) => i !== index),
                 })),
+            clear: () => set({ title: '', description: '', exercises: [] }),
         }),
         {
             name: 'document-store',

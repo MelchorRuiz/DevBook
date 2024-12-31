@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { DocumentEditor } from "./components/DocumentEditor"
 import { DocumentPreview } from "./components/DocumentPreview"
+import { Controls } from './components/Controls';
 import { Home } from "./components/Home"
 import { ManageDocuments } from "./components/ManageDocuments"
 import { LoginButton, Profile } from "./components/Auth"
@@ -38,6 +39,7 @@ function App() {
                 <>
                   <DocumentEditor />
                   <DocumentPreview />
+                  <Controls />
                 </>
               )} />
               <Route path='*' element={<NotFound />} />
