@@ -1,22 +1,33 @@
-import { GoogleLogin, googleLogout } from '@react-oauth/google'
-import { jwtDecode } from 'jwt-decode'
+import { googleLogout, useGoogleLogin } from '@react-oauth/google'
 import useUserStore from '../store/useUserStore';
 
 export const LoginButton = () => {
     const { setUser } = useUserStore();
 
+    const googleLogin = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            const response = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+                headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+            });
+            const userInfo = await response.json();
+            setUser(userInfo, tokenResponse.access_token);
+        },
+        onError: errorResponse => {
+            alert('Ha ocurrido un error');
+            console.log(errorResponse);
+        },
+        scope: 'https://www.googleapis.com/auth/drive.file',
+    });
+
     return (
-        <GoogleLogin
-            className='h-12'
-            onSuccess={(credentialResponse) => {
-                const token = credentialResponse.credential;
-                const user = jwtDecode(token);
-                setUser(user, token);
-            }}
-            onError={() => {
-                console.log('Login Failed');
-            }}
-        />
+        <button className='flex items-center gap-2 bg-white p-2 rounded-lg shadow-md hover:shadow-lg' onClick={googleLogin}>
+            <img
+                src='https://developers.google.com/identity/images/g-logo.png'
+                alt='google logo'
+                className='size-6'
+            />
+            <label className='text-black hover:cursor-pointer'>Iniciar sesión con Google</label>
+        </button>
     )
 };
 
