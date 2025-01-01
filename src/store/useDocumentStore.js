@@ -4,11 +4,13 @@ import { persist } from 'zustand/middleware';
 const useDocumentStore = create(
     persist(
         (set) => ({
+            name: '',
             title: '',
             description: '',
             exercises: [],
     
             // Actions
+            setName: (name) => set({ name }),
             setTitle: (title) => set({ title }),
             setDescription: (description) => set({ description }),
             addExercise: (exercise) =>
@@ -23,7 +25,8 @@ const useDocumentStore = create(
                 set((state) => ({
                     exercises: state.exercises.filter((_, i) => i !== index),
                 })),
-            clear: () => set({ title: '', description: '', exercises: [] }),
+            setAll: (document) => set(document),
+            clear: () => set({ name: '', title: '', description: '', exercises: [] }),
         }),
         {
             name: 'document-store',
